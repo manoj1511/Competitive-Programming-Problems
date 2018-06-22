@@ -109,7 +109,7 @@ int main() {
 			break;
 		}
 	}
-	if(A[1]=='0')
+	if(isempty())
 	{
 		out<<"satisfied";
 	}
