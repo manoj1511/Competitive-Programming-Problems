@@ -6,6 +6,7 @@ of square cells, each of which is in one of two possible states, al
 horizontally, vertically, or diagonally adjacent. 
 
 • At each step in time, the following transitions occur:
+
 – Any live cell with fewer than two live neighbors dies, as if caused by under 
 population.
 – Any live cell with two or three live neighbors lives on to the next generation.
