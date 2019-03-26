@@ -2,6 +2,18 @@
 
 using namespace std;
 
+void get(int *n)
+{
+	cin >> *n;
+	while(cin.fail())
+	{
+		cout << "Reenter a number: ";
+		cin.clear();
+		cin.ignore(256,'\n');
+		cin >> *n;
+	}
+}
+
 int main(int argc, char* argv[])
 {
 	if(argc != 2)
@@ -12,7 +24,13 @@ int main(int argc, char* argv[])
 	}
 	
 	int tc = atoi(argv[1]);
-	cout << tc << endl;
+	for (int i = 0; i < tc ; i++)
+	{
+		int n;
+		cout << "number of inputs in your array: ";
+		get(&n);
+		cout << "n is : " << n << endl;
+	}
 	return 0;
 }
 
