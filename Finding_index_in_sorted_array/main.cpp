@@ -25,8 +25,7 @@ vector<int> search(const vector<int> arr, const int num)
 		return output;
 	}
 	
-
-	int begin;	
+	int begin = 0;	
 	int end = arr.size() - 1;
 
 	for (int i = 0; i < arr.size(); i++)
