@@ -15,16 +15,39 @@ void get(int *n)
 	}
 }
 
-int search(const vector<int> arr, const int num)
+vector<int> search(const vector<int> arr, const int num)
 {
+	vector<int> output;
+
 	if(arr.size() == 0)
 	{
 		cout << "No elements present in array" << endl;
-		return 1;
+		return output;
 	}
 	
-	int begin = 0;
+
+	int begin;	
 	int end = arr.size() - 1;
+
+	for (int i = 0; i < arr.size(); i++)
+	{
+		if(arr[i]==num)
+		{
+		 	for(int indx = i; indx < arr.size(); indx++)
+			{
+				if(arr[i] == arr[indx])
+				{
+					output.push_back(indx);
+				}
+				else break;
+			}
+			return output;
+		}
+		if(arr[i] > arr[i+1])
+		{
+			begin = i; 
+		}
+	}
 	
 	int mid;
 
@@ -35,7 +58,15 @@ int search(const vector<int> arr, const int num)
 	
 		if(arr[mid] == num)
 		{
-			return mid;
+			for(int indx = mid; indx < arr.size(); indx++)
+			{
+				if(arr[mid] == arr[indx])
+				{
+					output.push_back(indx);
+				}
+				else break;
+			}
+			return output;
 		}
 		else if(arr[mid] < num)
 		{
@@ -47,7 +78,7 @@ int search(const vector<int> arr, const int num)
 		}
 	}	
 
-	return (-1);
+	return output;
 }
 
 
@@ -67,10 +98,12 @@ int main(int argc, char* argv[])
 		cout << "number of inputs in your array : ";
 		get(&n);
 	
-	
-		cout << "enter " << n << " elements of the array seperated by a space : ";
+
+		cout << "enter " << n << " elements of the array seperated by a space [omits the numbers after ";
+		cout << n << " elements] : ";
 
 		vector<int> my_array(n,0);
+
 		int temp;
 		for (auto &it : my_array)
 		{	
@@ -79,16 +112,27 @@ int main(int argc, char* argv[])
 //			cout << it << " ";
 		}
 		
+		cin.clear();
+		cin.ignore(500,'\n');
+			
+
 		cout << "number to find in your array : ";
 		get(&num);
-	
-		int pos = search(my_array, num);
-		if(pos == -1)
+		vector<int> out;
+		out = search(my_array, num);
+		if(out.size() == 0)
 		{
 			cout << "did not find the number in the array" << endl;
+			return 1;
 		}
-		cout << "\n" << pos << endl;
+
+		cout << "The number is found at index ";
+
+		for(auto &indx : out)
+			cout << "[" << indx << "]" << " ";
+		cout << endl;
 		my_array.clear();
+		out.clear();
 	}
 	return 0;
 }
