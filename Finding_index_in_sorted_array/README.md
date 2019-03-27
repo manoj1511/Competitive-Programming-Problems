@@ -61,3 +61,43 @@ enter 10 elements of the array seperated by a space [omits the numbers after 10 
 number to find in your array : 2
 did not find the number in the array
 ```
+
+3. When there are multiple copies of elements to be searched in first sorted array
+
+```
+$ ./main.exe 1
+number of inputs in your array : 10
+enter 10 elements of the array seperated by a space [omits the numbers after 10 elements] : 12 13 13 15 19 1 4 5 6 7
+number to find in your array : 13
+The number is found at index [1] [2] 
+```
+
+3. When there are multiple copies of elements to be searched in second sorted array
+
+```
+$ ./main.exe 1
+number of inputs in your array : 10
+enter 10 elements of the array seperated by a space [omits the numbers after 10 elements] : 12 13 14 18 19 1 1 1 2 8
+number to find in your array : 1
+The number is found at index [6] [7] [5] 
+```
+
+4. The number is divided between the two sorted arrays in the array
+
+```
+$ ./main.exe 1
+number of inputs in your array : 10
+enter 10 elements of the array seperated by a space [omits the numbers after 10 elements] : 5 5 7 9 10 1 3 5 5 5
+number to find in your array : 5
+The number is found at index [0] [1] [9] [8] [7] 
+```
+
+5. When all the elements in the array are the same
+
+```
+$ ./main.exe 1
+number of inputs in your array : 10
+enter 10 elements of the array seperated by a space [omits the numbers after 10 elements] : 1 1 1 1 1 1 1 1 1 1
+number to find in your array : 1
+The number is found at index [0] [1] [2] [3] [4] [5] [6] [7] [8] [9]
+```
