@@ -52,3 +52,12 @@ number to find in your array : 4
 The number is found at index [7] 
 ```
 
+2. When there is number is not present in the array.
+
+```
+$ ./main.exe 1
+number of inputs in your array : 10                      
+enter 10 elements of the array seperated by a space [omits the numbers after 10 elements] : 15 17 18 19 20 0 1 4 5 6
+number to find in your array : 2
+did not find the number in the array
+```
