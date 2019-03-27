@@ -31,21 +31,42 @@ vector<int> search(const vector<int> arr, const int num)
 
 	for (int i = 0; i < arr.size(); i++)
 	{
+		size_t flag = 0;
 		if(arr[i]==num)
 		{
 		 	for(int indx = i; indx < arr.size(); indx++)
 			{
+				if(indx == arr.size()-1) flag = 1;
+
 				if(arr[i] == arr[indx])
 				{
 					output.push_back(indx);
 				}
 				else break;
 			}
+			
+			if(i == 0 && !flag)
+			{
+				if(output[0] == 0)
+				{
+					for(int indx = arr.size() - 1; indx > 0; indx--)
+					{
+						if(arr[indx] == num)
+						{
+							output.push_back(indx);
+						}
+						else break;
+					}
+
+				}
+			}
+
 			return output;
 		}
 		if(arr[i] > arr[i+1])
 		{
-			begin = i; 
+			begin = i;
+			break; 
 		}
 	}
 	
@@ -58,7 +79,16 @@ vector<int> search(const vector<int> arr, const int num)
 	
 		if(arr[mid] == num)
 		{
-			for(int indx = mid; indx < arr.size(); indx++)
+			output.push_back(mid);
+			for(int indx = mid+1; indx <= end; indx++)
+			{
+				if(arr[mid] == arr[indx])
+				{
+					output.push_back(indx);
+				}
+				else break;
+			}
+			for(int indx = mid-1; indx >= 0; indx--)
 			{
 				if(arr[mid] == arr[indx])
 				{
