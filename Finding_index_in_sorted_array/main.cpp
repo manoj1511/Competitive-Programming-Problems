@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -9,7 +10,7 @@ void get(int *n)
 	{
 		cout << "Reenter a number: ";
 		cin.clear();
-		cin.ignore(256,'\n');
+		cin.ignore(500,'\n');
 		cin >> *n;
 	}
 }
@@ -30,6 +31,15 @@ int main(int argc, char* argv[])
 		cout << "number of inputs in your array: ";
 		get(&n);
 		cout << "n is : " << n << endl;
+		
+		vector<int> my_array(n,0);
+		int temp;
+		for (auto &it : my_array)
+		{	
+			get(&temp);
+			it = temp;
+			cout << it << " ";
+		}
 	}
 	return 0;
 }
