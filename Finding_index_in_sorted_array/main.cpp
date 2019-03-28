@@ -15,7 +15,7 @@ void get(int *n)
 	}
 }
 
-vector<int> search(const vector<int> arr, const int num)
+vector<int> algorithm1(const vector<int> arr, const int num)
 {
 	vector<int> output;
 
@@ -110,6 +110,32 @@ vector<int> search(const vector<int> arr, const int num)
 	return output;
 }
 
+int findchangepoint(vector<int> arr, int begin, int end)
+{
+
+	if(begin == end) return begin;
+
+	int mid = (begin + end) / 2;
+	
+	if(arr[begin] > arr[mid])			// if change point is in first half
+		findchangepoint(arr, begin, mid);	// recur on the first half
+
+	if(arr[mid] > arr[end])				// if change point is in second half
+		findchangepoint(arr, mid, end);		// recur on the second half
+
+	return begin;
+}
+vector<int> algorithm2(vector<int> arr, const int num)
+{
+
+	int changepoint = findchangepoint(arr, 0, arr.size()-1);
+	
+	cout << changepoint<<endl;
+
+	return arr;
+
+}
+
 
 int main(int argc, char* argv[])
 {
@@ -148,7 +174,7 @@ int main(int argc, char* argv[])
 		cout << "number to find in your array : ";
 		get(&num);
 		vector<int> out;
-		out = search(my_array, num);
+		out = algorithm1(my_array, num);
 		if(out.size() == 0)
 		{
 			cout << "did not find the number in the array" << endl;
@@ -159,9 +185,13 @@ int main(int argc, char* argv[])
 
 		for(auto &indx : out)
 			cout << "[" << indx << "]" << " ";
-		cout << endl;
-		my_array.clear();
+		cout << "using algorithm 1 " << endl;
+
 		out.clear();
+
+		out = algorithm2(my_array, num);
+	
+		my_array.clear();
 	}
 	return 0;
 }
