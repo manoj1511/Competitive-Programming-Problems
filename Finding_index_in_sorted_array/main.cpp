@@ -69,11 +69,13 @@ vector<int> algorithm1(const vector<int> arr, const int num)
 		}
 	}
 	
-	int mid;
+	int mid = (begin + end)/2;		
 
 	while(begin <= end)
 	{
-	 	mid = (begin+end)/2;	
+	 	if(arr[mid+1] == num]) mid = (begin+end)/2;
+		else mid = mid + 1;								// removed a small glitch did not find element when num is in mid + 1				
+	
 //		cout <<"\n"<< mid<<"\n";
 	
 		if(arr[mid] == num)
@@ -113,18 +115,23 @@ vector<int> algorithm1(const vector<int> arr, const int num)
 int findchangepoint(vector<int> arr, int begin, int end)
 {
 
-	if(begin == end) return begin;
-
 	int mid = (begin + end) / 2;
-	
-	if(arr[begin] > arr[mid])			// if change point is in first half
-		findchangepoint(arr, begin, mid);	// recur on the first half
+	int changepoint;
 
-	if(arr[mid] > arr[end])				// if change point is in second half
-		findchangepoint(arr, mid, end);		// recur on the second half
+	if(arr[begin] < arr[end]) return -1;				// algorithm not sorted
 
-	return begin;
+	if(arr[mid] > arr[mid+1]) return mid;
+
+	if(arr[begin] > arr[mid])					// if change point is in first half
+		changepoint = findchangepoint(arr, begin, mid);		// recur on the first half
+
+	if(arr[mid] > arr[end])						// if change point is in second half
+		changepoint = findchangepoint(arr, mid, end);		// recur on the second half
+
+	return changepoint;
+
 }
+
 vector<int> algorithm2(vector<int> arr, const int num)
 {
 
