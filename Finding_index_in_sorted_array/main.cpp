@@ -15,6 +15,57 @@ void get(int *n)
 	}
 }
 
+vector<int> search(const vector<int> arr, int begin, int end, const int num)
+{
+
+	vector<int> output;	
+	
+	int mid = (begin + end)/2;		
+
+	while(begin <= end)
+	{
+	 	if(arr[mid+1] == num) mid = (begin+end)/2;
+		else mid = mid + 1;								// removed a small glitch did not find element when num is in mid + 1				
+	
+//		cout <<"\n"<< mid<<"\n";
+	
+		if(arr[mid] == num)
+		{
+			output.push_back(mid);
+			for(int indx = mid+1; indx <= end; indx++)
+			{
+				if(arr[mid] == arr[indx])
+				{
+					output.push_back(indx);
+				}
+				else break;
+			}
+			for(int indx = mid-1; indx >= 0; indx--)
+			{
+				if(arr[mid] == arr[indx])
+				{
+					output.push_back(indx);
+				}
+				else break;
+			}
+			return output;
+		}
+		else if(arr[mid] < num)
+		{
+			begin = mid+1;
+		}
+		else
+		{
+			end = mid-1;
+		}
+	}	
+
+	return output;
+
+}
+
+
+
 vector<int> algorithm1(const vector<int> arr, const int num)
 {
 	vector<int> output;
@@ -68,46 +119,9 @@ vector<int> algorithm1(const vector<int> arr, const int num)
 			break; 
 		}
 	}
-	
-	int mid = (begin + end)/2;		
 
-	while(begin <= end)
-	{
-	 	if(arr[mid+1] == num]) mid = (begin+end)/2;
-		else mid = mid + 1;								// removed a small glitch did not find element when num is in mid + 1				
-	
-//		cout <<"\n"<< mid<<"\n";
-	
-		if(arr[mid] == num)
-		{
-			output.push_back(mid);
-			for(int indx = mid+1; indx <= end; indx++)
-			{
-				if(arr[mid] == arr[indx])
-				{
-					output.push_back(indx);
-				}
-				else break;
-			}
-			for(int indx = mid-1; indx >= 0; indx--)
-			{
-				if(arr[mid] == arr[indx])
-				{
-					output.push_back(indx);
-				}
-				else break;
-			}
-			return output;
-		}
-		else if(arr[mid] < num)
-		{
-			begin = mid+1;
-		}
-		else
-		{
-			end = mid-1;
-		}
-	}	
+	output = search(arr, begin, end, num);
+
 
 	return output;
 }
@@ -135,12 +149,23 @@ int findchangepoint(vector<int> arr, int begin, int end)
 vector<int> algorithm2(vector<int> arr, const int num)
 {
 
+	vector<int> output;
 	int changepoint = findchangepoint(arr, 0, arr.size()-1);
+
+	int begin = 0;
+	int end = arr.size() - 1;
+
+	if(changepoint == -1)						// array is sorted
+		output  = search(arr, begin, end, num);
+
 	
-	cout << changepoint<<endl;
+	if(num > arr[end])						// if point is in first half
+		output = search(arr, begin, changepoint, num);		// search the first half
+	
+	else
+		output = search(arr, changepoint + 1, end, num);	// else search in second half
 
-	return arr;
-
+	return output;							// return the final output to main
 }
 
 
@@ -197,7 +222,20 @@ int main(int argc, char* argv[])
 		out.clear();
 
 		out = algorithm2(my_array, num);
-	
+
+		if(out.size() == 0)
+		{
+			cout << "did not find the number in the array" << endl;
+			return 1;
+		}
+
+		cout << "The number is found at index ";
+
+		for(auto &indx : out)
+			cout << "[" << indx << "]" << " ";
+		cout << "using algorithm 2 " << endl;
+		
+		out.clear();
 		my_array.clear();
 	}
 	return 0;
