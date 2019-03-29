@@ -15,7 +15,7 @@ void get(int *n)								// helper function to read numbers
 	}
 }
 
-vector<int> search(const vector<int> arr, int begin, int end, const int num)	// binary search algorithm
+vector<int> search(const vector<int> arr, int begin, int end, const int num, int size)	// binary search algorithm
 {
 
 	vector<int> output;							// create a vector to store output
@@ -46,6 +46,34 @@ vector<int> search(const vector<int> arr, int begin, int end, const int num)	// 
 				}
 				else break;
 			}
+			for(int i = 0; i < output.size(); i++)
+			{
+				if(output[i] == size)
+				{
+					for(int indx = 0; i < arr.size(); i++)
+					{
+						if(arr[indx] == num)
+						{
+							output.push_back(indx);
+						}
+						else break;
+					}
+					break;
+				}
+				if(output[i] == 0)
+				{
+					for(int indx = arr.size(); i > 0; i--)
+					{
+						if(arr[indx] == num)
+						{
+							output.push_back(indx);
+						}
+						else break;
+					}
+					break;
+				}
+			}
+
 			return output;
 		}
 		else if(arr[mid] < num)						// if number to be searched is in second half change my begin to mid + 1
@@ -76,6 +104,7 @@ vector<int> algorithm1(const vector<int> arr, const int num)			// algorithm 1. c
 	
 	int begin = 0;								// initialize begin and end
 	int end = arr.size() - 1;
+	int size = end;
 
 	for (int i = 0; i < arr.size(); i++)					// iterate through the array till change has occured
 	{
@@ -119,7 +148,7 @@ vector<int> algorithm1(const vector<int> arr, const int num)			// algorithm 1. c
 		}
 	}
 
-	output = search(arr, begin, end, num);					// call the search algorithm on second half
+	output = search(arr, begin, end, num, size);				// call the search algorithm on second half
 
 
 	return output;								// return the result
@@ -153,16 +182,16 @@ vector<int> algorithm2(vector<int> arr, const int num)				// algorithm 2 uses bi
 
 	int begin = 0;								// initialize begin and end
 	int end = arr.size() - 1;
-
+	int size = end;								// actual size of full array
 	if(changepoint == -1)							// array is sorted
-		output  = search(arr, begin, end, num);				// search in entire array
+		output  = search(arr, begin, end, num, size);				// search in entire array
 
 	
 	if(num > arr[end])							// if point is in first half
-		output = search(arr, begin, changepoint, num);			// search the first half
+		output = search(arr, begin, changepoint, num, size);			// search the first half
 	
 	else
-		output = search(arr, changepoint + 1, end, num);		// else search in second half
+		output = search(arr, changepoint + 1, end, num, size);		// else search in second half
 
 	return output;								// return the final output to main
 }
