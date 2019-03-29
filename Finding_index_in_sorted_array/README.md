@@ -1,4 +1,4 @@
-### **Finding index of a number in two sorted arrays combined together**
+# **Finding index of a number in two sorted arrays combined together**
 
 ## **PROBLEM STATEMENT:**
 
@@ -18,7 +18,7 @@ of the number in array.
 
 	Time complexity log(N-T). N = Number of elements
 
-Log(T) + T + repitions
+**Log(T) + T + repitions**
 
 ## **ALGORITHM 2:**
 
@@ -32,7 +32,7 @@ Log(T) + T + repitions
 
 	Time complexity aproximately aroung log(N) based on T and first and second half
 
-Log(N) + Log(N) + repitions
+**Log(N) + Log(N) + repitions**
 
 ## **COMPILING :**
 
@@ -71,7 +71,7 @@ The number is found at index [6] using algorithm 2
 
 ## **TEST CASES:**
 
-# 1. Normal case - User inputs an array and searches for a number in it.
+### 1. Normal case - User inputs an array and searches for a number in it.
 
 ```
 ./main.exe 1
@@ -82,7 +82,7 @@ The number is found at index [6] using algorithm 1
 The number is found at index [6] using algorithm 2 
 ```
 
-# 2. When there is number is not present in the array.
+### 2. When there is number is not present in the array.
 
 ```
 ./main.exe 1
@@ -93,7 +93,7 @@ did not find the number in the array using algorithm 1
 did not find the number in the array using alrithm 2
 ```
 
-# 3. When there are multiple copies of elements to be searched in first sorted array
+### 3. When there are multiple copies of elements to be searched in first sorted array
 
 ```
 $ ./main.exe 1
@@ -104,7 +104,7 @@ The number is found at index [1] [2] [3] using algorithm 1
 The number is found at index [3] [2] [1] using algorithm 2 
 ```
 
-# 4. When there are multiple copies of elements to be searched in second sorted array
+### 4. When there are multiple copies of elements to be searched in second sorted array
 
 ```
 $ ./main.exe 1
@@ -115,7 +115,7 @@ The number is found at index [7] [8] [6] using algorithm 1
 The number is found at index [8] [7] [6] using algorithm 2 
 ```
 
-# 5. The number is divided between the two sorted arrays in the array
+### 5. The number is divided between the two sorted arrays in the array
 
 ```
 $ ./main.exe 1
@@ -126,7 +126,7 @@ The number is found at index [0] [1] [9] [8] using algorithm 1
 The number is found at index [8] [9] [0] [1] using algorithm 2
 ```
 
-# 6. When all the elements in the array are the same
+### 6. When all the elements in the array are the same
 
 ```
 ./main.exe 1
