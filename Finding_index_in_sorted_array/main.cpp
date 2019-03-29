@@ -24,8 +24,8 @@ vector<int> search(const vector<int> arr, int begin, int end, const int num, int
 
 	while(begin <= end)							// end loop when begin and end are same also begin goes before end
 	{
-	 	if(arr[mid+1] == num) mid = (begin+end)/2;			// calculate the new mid value for every iteration
-		else mid = mid + 1;						// removed a small glitch did not find element when num is in mid + 1				
+	 	if(arr[mid+1] == num) mid = mid + 1;				// calculate the new mid value for every iteration
+		else mid = (begin + end)/2;					// removed a small glitch did not find element when num is in mid + 1				
 	
 		if(arr[mid] == num)						// if my middle number is the number being searched
 		{
@@ -239,7 +239,6 @@ int main(int argc, char* argv[])
 		if(out.size() == 0)
 		{
 			cout << "did not find the number in the array" << endl; // algorithm did not find thr number
-			return 1;
 		}
 
 		cout << "The number is found at index ";			
