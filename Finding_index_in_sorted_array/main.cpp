@@ -46,6 +46,8 @@ vector<int> search(const vector<int> arr, int begin, int end, const int num, int
 				}
 				else break;
 			}
+			if(output.size()!=size+1)
+			{
 			for(int i = 0; i < output.size(); i++)
 			{
 				size_t flag = 0;
@@ -74,6 +76,7 @@ vector<int> search(const vector<int> arr, int begin, int end, const int num, int
 					}
 					break;
 				}
+			}
 			}
 
 			return output;
@@ -160,7 +163,7 @@ int findchangepoint(vector<int> arr, int begin, int end)			// fuction to find th
 {
 
 	int mid = (begin + end) / 2;						// calculate middle value
-	int changepoint;							
+	int changepoint = mid;							
 
 	if(arr[begin] < arr[end]) return -1;					// algorithm fully sorted
 
