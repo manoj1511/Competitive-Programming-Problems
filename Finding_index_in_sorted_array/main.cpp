@@ -240,12 +240,13 @@ int main(int argc, char* argv[])
 		{
 			cout << "did not find the number in the array using algorithm 1" << endl; // algorithm did not find thr number
 		}
-		else cout << "The number is found at index ";			
+		else{ 
+		cout << "The number is found at index ";			
 
 		for(auto &indx : out)
 			cout << "[" << indx << "]" << " ";			// print the values
 		cout << "using algorithm 1 " << endl;
-
+		}
 		out.clear();
 
 		out = algorithm2(my_array, num);				// run algorithm 2
@@ -254,12 +255,13 @@ int main(int argc, char* argv[])
 		{
 			cout << "did not find the number in the array using alrithm 2" << endl;
 		}
-		else cout << "The number is found at index ";			// print values
+		else{
+		cout << "The number is found at index ";			// print values
 							
 		for(auto &indx : out)
 			cout << "[" << indx << "]" << " ";
 		cout << "using algorithm 2 " << endl;
-		
+		}
 		out.clear();							
 		my_array.clear();
 	}
