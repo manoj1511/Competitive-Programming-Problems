@@ -48,25 +48,27 @@ vector<int> search(const vector<int> arr, int begin, int end, const int num, int
 			}
 			for(int i = 0; i < output.size(); i++)
 			{
+				size_t flag = 0;
 				if(output[i] == size)
 				{
-					for(int indx = 0; i < arr.size(); i++)
+					flag = 1;
+					for(int indx2 = 0; indx2 < arr.size(); indx2++)
 					{
-						if(arr[indx] == num)
+						if(arr[indx2] == num)
 						{
-							output.push_back(indx);
+							output.push_back(indx2);
 						}
 						else break;
 					}
 					break;
 				}
-				if(output[i] == 0)
+				if(output[i] == 0 && flag == 0)
 				{
-					for(int indx = arr.size(); i > 0; i--)
+					for(int indx2 = arr.size(); indx2 > 0; indx2--)
 					{
-						if(arr[indx] == num)
+						if(arr[indx2] == num)
 						{
-							output.push_back(indx);
+							output.push_back(indx2);
 						}
 						else break;
 					}
