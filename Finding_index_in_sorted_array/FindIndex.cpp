@@ -10,6 +10,12 @@ FindIndex::FindIndex(int n, int num, vector<int> arr)
 
 }
 
+FindIndex::~FindIndex()
+{
+	arr.clear();
+	output.clear();
+}
+
 void FindIndex::get_output()
 {
 	cout << "Number is found at Index";
@@ -165,7 +171,10 @@ void FindIndex::algorithm_3(int begin, int end, int size)
 {
 
 	int mid = (begin + end)/2;						// find the mid value
-
+	
+	if(begin > end)
+		return;
+	
         if(arr[mid] == num)							// check if mid is the number
             search(mid, mid, size);						// apply search on mid
             
@@ -189,3 +198,5 @@ void FindIndex::solve_using_algorithm_3()
 {
 	algorithm_3(0, n-1, n-1);	
 }
+
+
