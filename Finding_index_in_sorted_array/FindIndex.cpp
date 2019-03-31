@@ -59,11 +59,20 @@ void FindIndex::search(int begin, int end, int size)				// binary search algorit
 		
 			if(output.size()!=arr.size())
 			{
+				int flag = 0;					// flag to do either front or back check
+
 				for(int i = 0; i < output.size(); i++)
 				{
-					if(output[i] == size)
+					if(output[i] == size && flag == 0)
 					{
+						flag = 1;
 						check_front_repititions(0, 0, arr.size()-1);
+						break;
+					}
+					if(output[i] == 0 && flag == 0)
+					{
+						flag = 1;
+						check_back_repititions(arr.size()-1, 0, arr.size()-1);
 						break;
 					}
 				}
@@ -154,19 +163,26 @@ void FindIndex::solve_using_algorithm_2()
 
 void FindIndex::algorithm_3(int begin, int end, int size)
 {
-	int mid = (begin + end)/2;
-	if(arr[mid] > arr[begin])						// front side is sorted;
-	{
-		if(num < arr[mid])						// num is in front half
-			search(begin, mid , size);
-		else								// number is present in second half
-			algorithm_3(mid+1, n-1, size);		// recur in second half
-	}
-	else									// back end is sorted	
-	{
-		algorithm_3(mid+1, n-1, size);
-	}
-	
+
+	int mid = (begin + end)/2;						// find the mid value
+
+        if(arr[mid] == num)							// check if mid is the number
+            search(mid, mid, size);						// apply search on mid
+            
+        if(arr[mid] > arr[begin])                                               // if front side is sorted;
+        {
+                if(num >= arr[begin] && num <= arr[mid])			// and the num is in between them
+                        search(begin, mid , size);				// then search the region 
+                else                                                		// if the number is not in the sorted region
+                	algorithm_3(mid+1, end, size);				// recur on the second half
+        }
+        else                                                                    // if the back end is sorted
+        {
+            	if(num >= arr[mid+1] && num <= arr[end])			// and the number is in between them
+                	search(mid+1,end,size);					// search the second half
+            	else								// if the number is not in this region
+                	algorithm_3(begin, mid-1, size);            		// recur on first half
+        }
 }
 
 void FindIndex::solve_using_algorithm_3()
