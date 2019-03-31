@@ -39,5 +39,7 @@ int main()
 	obj.get_output();
 	obj.solve_using_algorithm_2();
 	obj.get_output();
+	obj.solve_using_algorithm_3();
+	obj.get_output();
 	return 0;
 }

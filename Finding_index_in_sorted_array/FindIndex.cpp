@@ -151,3 +151,25 @@ void FindIndex::solve_using_algorithm_2()
 	else
 		search(changepoint + 1, end, size);				// else search in second half
 }
+
+void FindIndex::algorithm_3(int begin, int end, int size)
+{
+	int mid = (begin + end)/2;
+	if(arr[mid] > arr[begin])						// front side is sorted;
+	{
+		if(num < arr[mid])						// num is in front half
+			search(begin, mid , size);
+		else								// number is present in second half
+			algorithm_3(mid+1, n-1, size);		// recur in second half
+	}
+	else									// back end is sorted	
+	{
+		algorithm_3(mid+1, n-1, size);
+	}
+	
+}
+
+void FindIndex::solve_using_algorithm_3()
+{
+	algorithm_3(0, n-1, n-1);	
+}
