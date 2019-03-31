@@ -20,6 +20,7 @@ private:
 
 public:
 	FindIndex(int, int, vector<int>);
+	~FindIndex();
 	void get_output();
 	void solve_using_algorithm_1();
 	void solve_using_algorithm_2();

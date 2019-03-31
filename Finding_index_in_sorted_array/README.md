@@ -34,6 +34,24 @@ of the number in array.
 
 **Log(N) + Log(N) + repitions**
 
+## **ALGORITHM 3**
+
+*Implemeted only in the app with classes ie. main2.cpp*
+
+1. Find the middle index.
+
+2. Check the middle point if its the number. If yes voila!
+
+3. See if the first half is sorted.
+	- If yes, see if the number is in the range from begin to mid.
+		- if yes, appply the search algorithm in the region.
+		- if not, recur on the second half from mid + 1 to end.
+4. If the second half is sorted.
+	- See if the number is in this range from mid + 1 to end.
+		- if yes, apply the search algorithm in this region.
+		- if not, recur on the first half from 0 to mid.
+
+
 ## **COMPILING :**
 
 Use the make file to compile
@@ -45,7 +63,7 @@ $make
 or
 
 ```
-$g++ main.cpp -o main.exe --std=c++11
+$g++ --std=c++11 -o main_with_class.exe main2.cpp FindIndex.cpp -pedantic -Wall -Werror
 ```
 
 gives an executable main.exe
@@ -53,20 +71,26 @@ gives an executable main.exe
 ## **EXECUTION :**
 
 ```
-$./main.exe <TC>
+$./main_with_class.exe
 ```
 
-TC = number of test cases
 
 ## **EXAMPLE :**
 
+*I'm showing examples and test cases only for class implementation*
+
+The first line of output is using algorithm 1.
+The second line of output is using algorithm 2.
+The third  line of output is using algorithm 3.
+
 ```
-./main.exe 1
-number of inputs in your array : 10                 
+$ ./main_with_class.exe 
+number of inputs in your array : 10
 enter 10 elements of the array seperated by a space [omits the numbers after 10 elements] : 5 6 7 8 9 1 2 3 4 5
-number to find in your array : 2
-The number is found at index [6] using algorithm 1 
-The number is found at index [6] using algorithm 2 
+number to find in your array : 7
+Number is found at Index [ 2 ] 
+Number is found at Index [ 2 ] 
+Number is found at Index [ 2 ] 
 ```
 
 ## **TEST CASES:**
@@ -74,65 +98,71 @@ The number is found at index [6] using algorithm 2
 ### 1. Normal case - User inputs an array and searches for a number in it.
 
 ```
-./main.exe 1
-number of inputs in your array : 10                 
+$ ./main_with_class.exe 
+number of inputs in your array : 10
 enter 10 elements of the array seperated by a space [omits the numbers after 10 elements] : 5 6 7 8 9 1 2 3 4 5
-number to find in your array : 2
-The number is found at index [6] using algorithm 1 
-The number is found at index [6] using algorithm 2 
+number to find in your array : 7
+Number is found at Index [ 2 ] 
+Number is found at Index [ 2 ] 
+Number is found at Index [ 2 ] 
 ```
 
 ### 2. When there is number is not present in the array.
 
 ```
-./main.exe 1
+$ ./main_with_class.exe 
 number of inputs in your array : 10
 enter 10 elements of the array seperated by a space [omits the numbers after 10 elements] : 5 6 7 8 9 1 2 3 4 5
 number to find in your array : 10
-did not find the number in the array using algorithm 1
-did not find the number in the array using alrithm 2
+Number is found at Index
+Number is found at Index
+Number is found at Index
 ```
 
 ### 3. When there are multiple copies of elements to be searched in first sorted array
 
 ```
-$ ./main.exe 1
-number of inputs in your array : 10
+$ ./main_with_class.exe 
+number of inputs in your array : 10  
 enter 10 elements of the array seperated by a space [omits the numbers after 10 elements] : 5 6 6 6 7 1 2 3 4 5
 number to find in your array : 6
-The number is found at index [1] [2] [3] using algorithm 1 
-The number is found at index [3] [2] [1] using algorithm 2 
+Number is found at Index [ 1 ]  [ 2 ]  [ 3 ] 
+Number is found at Index [ 3 ]  [ 2 ]  [ 1 ] 
+Number is found at Index [ 3 ]  [ 2 ]  [ 1 ] 
 ```
 
 ### 4. When there are multiple copies of elements to be searched in second sorted array
 
 ```
-$ ./main.exe 1
+$ ./main_with_class.exe 
 number of inputs in your array : 10
 enter 10 elements of the array seperated by a space [omits the numbers after 10 elements] : 5 6 7 8 9 1 2 2 2 5
 number to find in your array : 2
-The number is found at index [7] [8] [6] using algorithm 1 
-The number is found at index [8] [7] [6] using algorithm 2 
+Number is found at Index [ 8 ]  [ 7 ]  [ 6 ] 
+Number is found at Index [ 8 ]  [ 7 ]  [ 6 ] 
+Number is found at Index [ 7 ]  [ 8 ]  [ 6 ] 
 ```
 
 ### 5. The number is divided between the two sorted arrays in the array
 
 ```
-$ ./main.exe 1
+$ ./main_with_class.exe 
 number of inputs in your array : 10
 enter 10 elements of the array seperated by a space [omits the numbers after 10 elements] : 5 5 6 7 8 1 2 3 5 5
 number to find in your array : 5
-The number is found at index [0] [1] [9] [8] using algorithm 1 
-The number is found at index [8] [9] [0] [1] using algorithm 2
+Number is found at Index [ 0 ]  [ 1 ]  [ 9 ]  [ 8 ] 
+Number is found at Index [ 8 ]  [ 9 ]  [ 0 ]  [ 1 ] 
+Number is found at Index [ 0 ]  [ 1 ]  [ 9 ]  [ 8 ]
 ```
 
 ### 6. When all the elements in the array are the same
 
-```
-./main.exe 1
-number of inputs in your array : 4
-enter 4 elements of the array seperated by a space [omits the numbers after 4 elements] : 1 1 1 1
+``` 
+$ ./main_with_class.exe 
+number of inputs in your array : 5
+enter 5 elements of the array seperated by a space [omits the numbers after 5 elements] : 1 1 1 1 1
 number to find in your array : 1
-The number is found at index [0] [1] [2] [3] using algorithm 1 
-The number is found at index [3] [2] [1] [0] using algorithm 2 
+Number is found at Index [ 0 ]  [ 1 ]  [ 2 ]  [ 3 ]  [ 4 ] 
+Number is found at Index [ 4 ]  [ 3 ]  [ 2 ]  [ 1 ]  [ 0 ] 
+Number is found at Index [ 4 ]  [ 3 ]  [ 2 ]  [ 1 ]  [ 0 ]
 ```
