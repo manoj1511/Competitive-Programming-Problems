@@ -12,8 +12,9 @@ FindIndex::FindIndex(int n, int num, vector<int> arr)
 
 void FindIndex::get_output()
 {
+	cout << "Number is found at Index";
 	for(auto &i : output)
-		cout << i << " ";
+		cout << " [ " << i << " ] ";
 	cout << endl;
 }
 
@@ -31,7 +32,7 @@ void FindIndex::check_front_repititions(int i, int begin, int end)
 
 void FindIndex::check_back_repititions(int i, int begin, int end)
 {
-	for(int indx = i; indx >= begin; indx--)					// check in front for any repitions
+	for(int indx = i; indx >= begin; indx--)				// check in front for any repitions
 	{
 		if(arr[indx] == arr[i+1])
 		{
@@ -113,3 +114,38 @@ void FindIndex::solve_using_algorithm_1()
 	search(begin, end, size);
 }
 
+int FindIndex::findchangepoint(int begin, int end)				// fuction to find the change point
+{
+
+	int mid = (begin + end) / 2;						// calculate middle value
+	int changepoint = mid;							
+
+	if(arr[begin] < arr[end]) return -1;					// algorithm fully sorted
+
+	if(arr[mid] > arr[mid+1]) return mid;					// if the first mid itself is a change point
+
+	if(arr[begin] > arr[mid])						// if change point is in first half
+		changepoint = findchangepoint(begin, mid);			// recur on the first half
+
+	if(arr[mid] > arr[end])							// if change point is in second half
+		changepoint = findchangepoint(mid, end);			// recur on the second half
+
+	return changepoint;
+
+}
+
+void FindIndex::solve_using_algorithm_2()
+{
+	int changepoint = findchangepoint(0, arr.size()-1);			// find changepoint
+
+	int begin = 0;								// initialize begin and end
+	int end = arr.size() - 1;
+	int size = end;								// actual size of full array
+	if(changepoint == -1)							// array is sorted
+		search(begin, end, size);					// search in entire array
+
+	if(num > arr[end])							// if point is in first half
+		search(begin, changepoint, size);				// search the first half	
+	else
+		search(changepoint + 1, end, size);				// else search in second half
+}
