@@ -60,8 +60,8 @@ void FindIndex::search(int begin, int end, int size)				// binary search algorit
 		if(arr[mid] == num)						// if my middle number is the number being searched
 		{
 			output.push_back(mid);					// add the index to the output
-			check_front_repititions(mid+1, begin, end);		// check in front for any repitions
-			check_back_repititions(mid-1, begin, end);		// check in back for any repitions
+			check_front_repititions(mid+1, 0, n-1);			// check in front for any repitions
+			check_back_repititions(mid-1, 0, n-1);			// check in back for any repitions
 		
 			if(output.size()!=arr.size())
 			{
