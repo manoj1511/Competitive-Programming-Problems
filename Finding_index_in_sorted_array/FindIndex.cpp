@@ -111,13 +111,15 @@ void FindIndex::solve_using_algorithm_1()
 		{
 			output.push_back(i);
 			check_front_repititions(i+1, begin, end);
-
-			for(int i = 0; i < output.size(); i++)
+			if(output.size() != arr.size())
 			{
-				if(output[i] == 0)
+				for(int i = 0; i < output.size(); i++)
 				{
-					check_back_repititions(arr.size()-1, 1, arr.size()-1);
-					break;
+					if(output[i] == 0)
+					{
+						check_back_repititions(arr.size()-1, 1, arr.size()-1);
+						break;
+					}
 				}
 			}
 			return;
