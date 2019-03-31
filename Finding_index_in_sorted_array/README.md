@@ -51,6 +51,7 @@ of the number in array.
 		- if yes, apply the search algorithm in this region.
 		- if not, recur on the first half from 0 to mid.
 
+**Log(N) + repititions**
 
 ## **COMPILING :**
 
