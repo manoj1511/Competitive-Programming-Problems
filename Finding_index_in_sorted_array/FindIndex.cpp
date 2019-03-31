@@ -22,7 +22,7 @@ void FindIndex::check_front_repititions(int i, int begin, int end)
 {
 	for(int indx = i; indx <= end; indx++)					// check in front for any repitions
 	{
-		if(arr[indx] == arr[i-1])
+		if(arr[indx] == num)
 		{
 			output.push_back(indx);
 		}
@@ -34,7 +34,7 @@ void FindIndex::check_back_repititions(int i, int begin, int end)
 {
 	for(int indx = i; indx >= begin; indx--)				// check in front for any repitions
 	{
-		if(arr[indx] == arr[i+1])
+		if(arr[indx] == num)
 		{
 			output.push_back(indx);
 		}
@@ -44,6 +44,8 @@ void FindIndex::check_back_repititions(int i, int begin, int end)
 
 void FindIndex::search(int begin, int end, int size)				// binary search algorithm
 {
+	output.clear();
+	
 	int mid = (begin + end)/2;						// find the middle of array
 	while(begin <= end)							// end loop when begin and end are same also begin goes before end
 	{
@@ -99,7 +101,7 @@ void FindIndex::solve_using_algorithm_1()
 			{
 				if(output[i] == 0)
 				{
-					check_back_repititions(arr.size(), 1, arr.size());
+					check_back_repititions(arr.size()-1, 1, arr.size()-1);
 					break;
 				}
 			}
